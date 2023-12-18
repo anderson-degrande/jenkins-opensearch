@@ -1,3 +1,8 @@
+@Grab(group='io.opentelemetry', module='opentelemetry-api', version='2.19.0')
+@Grab(group='io.opentelemetry', module='opentelemetry-sdk', version='2.19.0')
+import io.opentelemetry.api.GlobalOpenTelemetry
+import io.opentelemetry.sdk.metrics.SdkMeterProvider
+
 pipeline {
     agent any
     
@@ -21,7 +26,7 @@ pipeline {
                     def endTime = System.currentTimeMillis()
                     
                     // Registre a métrica de duração
-                    OpenTelemetry.getGlobalTracerManagement().getMeterProvider().get("pipeline").longValueRecorderBuilder("build_duration").build().record(endTime - startTime)
+                    GlobalOpenTelemetry.get().getMeterProvider().get("pipeline").longValueRecorderBuilder("build_duration").build().record(endTime - startTime)
                 }
             }
         }
