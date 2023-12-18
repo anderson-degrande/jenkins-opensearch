@@ -15,6 +15,14 @@ pipeline {
             steps {
                 // Suas etapas de construção aqui
                 echo 'Construindo...'
+                script {
+                    def startTime = System.currentTimeMillis()
+                    // Suas etapas de construção aqui
+                    def endTime = System.currentTimeMillis()
+                    
+                    // Registre a métrica de duração
+                    OpenTelemetry.getGlobalTracerManagement().getMeterProvider().get("pipeline").longValueRecorderBuilder("build_duration").build().record(endTime - startTime)
+                }
             }
         }
 
