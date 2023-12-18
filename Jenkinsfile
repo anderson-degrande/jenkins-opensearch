@@ -1,11 +1,9 @@
-@Grab(group='io.opentelemetry', module='opentelemetry-api', version='2.19.0')
-@Grab(group='io.opentelemetry', module='opentelemetry-sdk', version='2.19.0')
-import io.opentelemetry.api.GlobalOpenTelemetry
-import io.opentelemetry.sdk.metrics.SdkMeterProvider
+@Library('cicd') _
+import org.example.MyOpenTelemetry
 
 pipeline {
     agent any
-    
+
     stages {
         stage('Checkout') {
             steps {
@@ -26,6 +24,7 @@ pipeline {
                     def endTime = System.currentTimeMillis()
                     
                     // Registre a métrica de duração
+                    MyOpenTelemetry.configureOpenTelemetry()
                     GlobalOpenTelemetry.get().getMeterProvider().get("pipeline").longValueRecorderBuilder("build_duration").build().record(endTime - startTime)
                 }
             }
