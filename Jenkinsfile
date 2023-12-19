@@ -1,5 +1,5 @@
 @Library('cicd') _
-import jenkins-opensearch.src.MyOpenTelemetry
+import .MyOpenTelemetry
 
 pipeline {
     agent any
