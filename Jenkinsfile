@@ -1,6 +1,3 @@
-@Library('cicd') _
-import org.example.MyOpenTelemetry
-
 pipeline {
     agent any
 
@@ -18,15 +15,6 @@ pipeline {
             steps {
                 // Suas etapas de construção aqui
                 echo 'Construindo...'
-                script {
-                    def startTime = System.currentTimeMillis()
-                    // Suas etapas de construção aqui
-                    def endTime = System.currentTimeMillis()
-                    
-                    // Registre a métrica de duração
-                    MyOpenTelemetry.configureOpenTelemetry()
-                    GlobalOpenTelemetry.get().getMeterProvider().get("pipeline").longValueRecorderBuilder("build_duration").build().record(endTime - startTime)
-                }
             }
         }
 
