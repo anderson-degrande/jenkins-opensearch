@@ -1,7 +1,7 @@
 package org.example
 
-@Grab(group='io.opentelemetry', module='opentelemetry-api', version='2.19.0')
-@Grab(group='io.opentelemetry', module='opentelemetry-sdk', version='2.19.0')
+@Grab(group='io.opentelemetry', module='opentelemetry-api')
+@Grab(group='io.opentelemetry', module='opentelemetry-sdk')
 import io.opentelemetry.api.GlobalOpenTelemetry
 import io.opentelemetry.sdk.metrics.SdkMeterProvider
 
