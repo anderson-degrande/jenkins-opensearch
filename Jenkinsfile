@@ -1,5 +1,5 @@
 @Library('cicd') _
-import org.example.MyOpenTelemetry
+import MyOpenTelemetry
 
 pipeline {
     agent any
